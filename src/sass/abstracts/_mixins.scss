@@ -1,0 +1,169 @@
+@use "functions" as mxFuncs;
+@use "variables" as mxVars;
+@mixin media-breakpoint-min($screen) {
+    $breakpoint: mxFuncs.getBreakpoint($screen);
+
+    @media screen and (min-width: $breakpoint) {
+        @content;
+    }
+}
+
+@mixin media-breakpoint-max($screen) {
+    $breakpoint: mxFuncs.getBreakpoint($screen);
+    --breakpoint: calc(#{$breakpoint} - 1px);
+
+    @media screen and (max-width: calc(#{$breakpoint} - 1px)) {
+        @content;
+    }
+}
+
+@mixin media-nav {
+    @include media-breakpoint-min(mxVars.$menu-breakpoint) {
+        @content;
+    }
+}
+
+@mixin media-nav-max {
+    @include media-breakpoint-max(mxVars.$menu-breakpoint) {
+        @content;
+    }
+}
+
+@mixin touch-only() {
+    @media screen and (hover: none) and (pointer: coarse) {
+        @content;
+    }
+}
+
+@mixin media-reduceMotionNoPreference {
+    @media (prefers-reduced-motion: no-preference) {
+        @content;
+    }
+}
+
+
+@mixin font-sans {
+    font-family: var(--font-sans);
+}
+@mixin font-serif {
+    font-family: var(--font-serif);
+}
+@mixin font-mono {
+    font-family: var(--font-mono);
+}
+
+
+@mixin focus-ring {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+
+    --focus-ring-shadow: 0 0 0 calc(var(--focus-ring-width) + var(--focus-ring-offset-width)) var(--focus-ring-clr);
+    --focus-ring-offset-shadow: 0 0 0 var(--focus-ring-offset-width) var(--focus-ring-offset-clr);
+    box-shadow:
+        var(--focus-ring-offset-shadow),
+        var(--focus-ring-shadow),
+        0 0 #000;
+
+    border-color: var(--focus-clr);
+    //transition: box-shadow var(--transition-duration) ease-in-out;
+    //@include prefers-no-motion;
+}
+
+@mixin no-focus-ring {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+
+    --focus-ring-width: 0px;
+    --focus-ring-offset-width: 0px;
+    --focus-clr: inherited;
+}
+
+
+@mixin container-padding {
+    padding: 0 var(--container-padding-x);
+}
+@mixin container-width {
+    min-width: 20rem;
+    max-width: var(--container-max-width);
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+@mixin container {
+    @include container-width;
+    @include container-padding;
+}
+
+@mixin sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+@mixin truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@mixin line-clamp($lines: 1) {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    //noinspection CssUnknownProperty
+    -webkit-line-clamp: $lines;
+}
+
+@mixin line-clamp-unset() {
+    //noinspection CssUnknownProperty
+    -webkit-line-clamp: unset;
+}
+
+@mixin truncate() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@mixin prefers-no-motion {
+    @media (prefers-reduced-motion) {
+        transition: none;
+        @content;
+    }
+}
+
+@mixin boxShadow($blur: 10px) {
+    box-shadow: 0 0 10px rgba(black,0.5);
+}
+
+
+@mixin prose {
+    line-height: 1.5;
+
+    $selector: #{&};
+
+    $blockSelectors:
+        address, article, aside, blockquote, canvas, dd, dl, dt, figure, footer, h1, h2, h3, h4, h5, h6, header, main, nav, ol, p, pre, section, table, ul, video;
+
+    @each $blockSelector in $blockSelectors {
+        @at-root #{$selector} * + #{$blockSelector} {
+            margin-top: 1em;
+        }
+    }
+
+    a[href] {
+        --clr-link: var(--clr-primary-500);
+        color: var(--clr-link);
+        text-decoration: underline;
+        &:hover {
+            opacity: 0.75;
+        }
+    }
+
+}

@@ -1,0 +1,37 @@
+{
+    "name": "@gelbehexe/digital-poison-layout",
+    "version": "0.0.0",
+    "author": "Deborah White <deborah.white1503@icloud.com>",
+    "license": "MIT",
+    "private": true,
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "serve": "vite preview"
+    },
+    "dependencies": {
+        "uuid": "^8.3.2",
+        "vue": "^3.0.5",
+        "vue-router": "^4.0.0"
+    },
+    "devDependencies": {
+        "@vitejs/plugin-vue": "^1.2.5",
+        "@vue/compiler-sfc": "^3.0.5",
+        "vite": "^2.4.2",
+        "@fontsource/josefin-sans": "^4.5.0",
+        "@fontsource/roboto-mono": "^4.5.0",
+        "@fontsource/josefin-slab": "^4.5.0",
+        "sass": "^1.35.1",
+        "autoprefixer": "^10.2.6",
+        "eslint": "^7.30.0",
+        "eslint-plugin-vue": "^7.13.0",
+        "focus-visible": "^5.2.0",
+        "modern-normalize": "^1.1.0",
+        "suitcss-base": "suitcss/base",
+        "postcss": "^8.3.5",
+        "postcss-discard-comments": "^5.0.1",
+        "postcss-focus-visible": "^5.0.0",
+        "postcss-import": "^14.0.2",
+        "postcss-merge-rules": "^5.0.2"
+    }
+}

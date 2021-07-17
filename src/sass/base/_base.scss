@@ -1,0 +1,93 @@
+
+@use "../abstracts/variables" as baseVars;
+@use "../abstracts/mixins" as baseMixins;
+//@use "global" as g;
+//@use "color" as clr;
+//@use "font";
+body {
+    font-size: 16px;
+    background-color: var(--clr-background);
+    color: var(--clr-text);
+}
+
+::selection {
+    background-color: var(--clr-selection);
+}
+
+pre {
+    white-space: pre;
+    overflow: auto;
+}
+
+kbd {
+    display: inline;
+    border: 1px solid var(--clr-gray-350);
+    padding: 0.2em;
+    border-radius: var(--border-radius-small);
+    box-shadow: inset 0 0 0.5em var(--clr-gray-300), 0 0 0.4em var(--clr-gray-200);
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-weight: var(--font-weight-bold);
+}
+
+@for $i from 1 through 6 {
+    $step: 0.125rem;
+    $font-size: (6 - $i) * $step + baseVars.$base-font-size;
+    h#{$i} {
+        font-size: $font-size;
+    }
+}
+
+strong, b {
+    font-weight: var(--font-weight-bold);
+}
+
+hr {
+    display: block;
+    margin: 0.25rem 0;
+    border-width: 1px;
+    border-color: currentColor;
+}
+
+blockquote {
+    --clr-accent: #{rgba(baseVars.$clr-primary-300,0.9)};
+    font-style: oblique;
+    line-height: 1.6;
+    margin: 3em auto;
+    //width: 60%;
+    min-width: calc(var(--container-min-width) - (var(--container-padding-x) * 2));
+    max-width: calc(100vw - (var(--container-padding-x) * 2) -  (var(--spacer) * 4));
+    //max-width:
+    padding: 1.2em 2em 1.2em 4.5em;
+    position: relative;
+    background-color: var(--clr-gray-200);
+    border-left: 0.5em solid var(--clr-accent);
+
+    &:before {
+        content: '\201C';
+        font-family: Arial, serif;
+        font-size: 6em;
+        position: absolute;
+        left: 1rem;
+        top: -1rem;
+        display: block;
+        width: auto;
+        color: var(--clr-accent)
+    }
+
+    @include baseMixins.media-breakpoint-min(md) {
+        font-size: 120%;
+        margin: 3em auto;
+        width: 60%;
+    }
+}
+
+code, kbd, pre, samp {
+    @include baseMixins.font-mono;
+}
+
+
+a:focus-visible {
+    @include baseMixins.focus-ring;
+}

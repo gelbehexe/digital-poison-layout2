@@ -1,0 +1,20 @@
+@use "../abstracts/mixins" as tcMixins;
+@include tcMixins.touch-only {
+    .touch-click {
+        transform-origin: center;
+        transform: scale(1.0);
+        @include tcMixins.media-reduceMotionNoPreference {
+            transition: transform 5s 0s ease-in-out, all 0.5s 0s ease;
+        }
+    }
+
+    .touch-click:not(.touch-click-active) {
+        transform: scale(1.0);
+    }
+
+    .touch-click-active {
+        transform: scale(var(--touch-click-active-scale));
+    }
+
+}
+

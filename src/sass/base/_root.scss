@@ -1,0 +1,117 @@
+@use "sass:color";
+@use "../abstracts/variables" as rootVars;
+@use "../abstracts/functions" as rootFuncs;
+
+:root {
+    --empty: var(--null);
+
+    --clr-primary-50: #{rootVars.$clr-primary-50};
+    --clr-primary-100: #{rootVars.$clr-primary-100};
+    --clr-primary-200: #{rootVars.$clr-primary-200};
+    --clr-primary-250: #{rootVars.$clr-primary-250};
+    --clr-primary-300: #{rootVars.$clr-primary-300};
+    --clr-primary-400: #{rootVars.$clr-primary-400};
+    --clr-primary-500: #{rootVars.$clr-primary-500};
+    --clr-primary-600: #{rootVars.$clr-primary-600};
+    --clr-primary-700: #{rootVars.$clr-primary-700};
+    --clr-primary-800: #{rootVars.$clr-primary-800};
+    --clr-primary-900: #{rootVars.$clr-primary-900};
+    --clr-primary: var(--clr-primary-500);
+
+    --clr-gray-50: #{rootVars.$clr-gray-50};
+    --clr-gray-100: #{rootVars.$clr-gray-100};
+    --clr-gray-200: #{rootVars.$clr-gray-200};
+    --clr-gray-300: #{rootVars.$clr-gray-300};
+    --clr-gray-350: #{rootVars.$clr-gray-350};
+    --clr-gray-400: #{rootVars.$clr-gray-400};
+    --clr-gray-500: #{rootVars.$clr-gray-500};
+    --clr-gray-600: #{rootVars.$clr-gray-600};
+    --clr-gray-700: #{rootVars.$clr-gray-700};
+    --clr-gray-800: #{rootVars.$clr-gray-800};
+    --clr-gray-900: #{rootVars.$clr-gray-900};
+    --clr-gray-950: #{rootVars.$clr-gray-950};
+
+    --clr-darker-text: #121213;
+    --clr-dark-text: #27272a;
+    --clr-light-text: var(--clr-gray-100);
+    --clr-lighter-bg: var(--clr-gray-100);
+    --clr-light-bg: var(--clr-gray-300);
+    --clr-dark-bg: var(--clr-gray-900);
+
+    --clr-selection: var(--clr-primary);
+    --clr-selection-inactive: var(--clr-gray-400);
+    --clr-placeholder-fg: var(--clr-gray-300);
+
+    --font-sans: #{rootFuncs.getFontFamily(sans)};
+    --font-serif: #{rootFuncs.getFontFamily(serif)};
+    --font-mono: #{rootFuncs.getFontFamily(mono)};
+    --font-size: #{rootVars.$base-font-size};
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-bolder: 500;
+    --font-weight-bold: 700;
+    --font-weight-black: 900;
+
+    --clr-background: var(--clr-light-bg);
+    --clr-text: var(--clr-dark-text);
+    --clr-top-bottom-bg: #{rootVars.$clr-top-bottom-bg};
+
+    --container-padding-x: 1rem;
+    --container-min-width: #{rootVars.$container-min-width};
+    --container-max-width: #{rootFuncs.getBreakpoint(lg)};
+    --spacer: #{rootVars.$spacer};
+
+    --small-screen-width: 20rem;
+    --small-screen-inner-width: calc(var(--small-screen-width) - (var(--container-padding-x) * 2));
+
+    --border-radius: 8px;
+    --border-radius-small: 4px;
+
+
+    --clr-menu-bg: #{rootVars.$menu-background-color};
+
+    --default-control-font-size: 1rem;
+    --default-control-line-height: 1.5rem;
+    --default-control-padding: 0.75em;
+
+    --button-icon-size: 1.5rem;
+
+    --nav-link-padding: 0.75rem;
+
+
+    --clr-field-border: var(--clr-gray-350);
+    --clr-field-bg: var(--clr-gray-50);
+    --clr-field-text: var(--clr-gray-800);
+    --clr-fieldset-border: var(--clr-gray-400);
+    --clr-selected-option-bg: var(--clr-gray-300);
+    --clr-selected-focussed-option-bg: #7FBB48;
+    --clr-button-default-bg: var(--clr-gray-300);
+    --clr-button-default-fg: var(--clr-gray-800);
+    --clr-button-default-border: var(--clr-gray-300);
+
+
+    --focus-clr: #{rootVars.$focus-color};
+
+    --focus-ring-opacity: 0.5;
+    --focus-ring-offset-opacity: 0.75;
+    --focus-ring-clr: #{rootFuncs.getRgba(rootVars.$focus-ring-color,"var(--focus-ring-opacity)")};
+    --focus-ring-width: 1px;
+    --focus-ring-offset-clr: #{rootFuncs.getRgba(rootVars.$focus-ring-offset-color,"var(--focus-ring-offset-opacity)")};
+    --focus-ring-offset-width: 1px;
+
+
+    --nav-item-line-height: 1.5rem;
+
+
+    --transition-duration: 250ms;
+
+    --touch-click-active-scale: 1.05;
+
+    // hamburger menu
+    --ham-padding: 0.75rem;
+    --ham-icon-size: 2.5rem;
+    --ham-icon-size-outer: calc(var(--ham-icon-size) + (var(--ham-padding) * 2));
+    // dynamically updated via js
+    --ham-menu-max-height: 70vh;
+
+}

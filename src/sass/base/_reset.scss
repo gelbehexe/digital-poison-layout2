@@ -1,0 +1,118 @@
+@use "~modern-normalize/modern-normalize.css";
+@use "~suitcss-base/lib/base.css";
+
+:-moz-focusring {
+    outline: none;
+}
+
+// unset the border: 0 in base.css, because it makes it somehow impossible to
+// override the button width by using border-width
+button {
+    border: 0 solid transparent;
+}
+
+// since we use focus-visible unset the outline style
+button:focus {
+    outline: none;
+}
+
+html {
+    font-size: 16px;
+    font-family: var(--font-sans);
+    font-weight: var(--font-weight-regular);
+    line-height: 1.5;
+}
+
+body {
+    font-family: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+    font-size: var(--font-size);
+}
+
+*,
+::before,
+::after {
+    box-sizing: border-box; /* 1 */
+    border-width: 0; /* 2 */
+    border-style: solid; /* 2 */
+    border-color: currentColor; /* 2 */
+}
+
+hr {
+    border-top-width: 1px;
+    margin: 0.5rem 0;
+}
+
+textarea {
+    resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+    opacity: 1;
+    color: var(--clr-placeholder-fg);
+}
+
+button,
+[role="button"] {
+    cursor: pointer;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    padding: 0;
+    line-height: inherit;
+    color: inherit;
+}
+
+pre,
+code,
+kbd,
+samp {
+    font-family: var(--font-mono);
+}
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+    display: block; /* 1 */
+    vertical-align: middle; /* 2 */
+}
+
+img,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+svg {
+    pointer-events: none;
+}

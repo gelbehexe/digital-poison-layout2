@@ -1,0 +1,104 @@
+@use "sass:color";
+$breakpoints: (
+    xs: 380px,
+    sm: 640px,
+    md: 768px,
+    lg: 1024px,
+    xl: 1280px,
+    2xl: 1536px,
+) !default;
+
+$clr-primary-50: #E5F1DA !default;
+$clr-primary-100: #CCE4B6 !default;
+$clr-primary-200: #B2D691 !default;
+$clr-primary-250: #99c96d !default;
+$clr-primary-300: #7FBB48 !default;
+$clr-primary-400: #5F8C36 !default;
+$clr-primary-500: #547B2F !default;
+$clr-primary-600: #446426 !default;
+$clr-primary-700: #2B440E !default;
+$clr-primary-800: #223213 !default;
+$clr-primary-900: #151F0C !default;
+$clr-primary: $clr-primary-500 !default;
+
+$clr-gray-50: #fafafa !default;
+$clr-gray-100: #f4f4f5 !default;
+$clr-gray-200: #e4e4e7 !default;
+$clr-gray-300: #d4d4d8 !default;
+$clr-gray-350: #b7b7ba !default;
+$clr-gray-400: #a1a1aa !default;
+$clr-gray-500: #71717a !default;
+$clr-gray-600: #52525b !default;
+$clr-gray-700: #3f3f46 !default;
+$clr-gray-800: #27272a !default;
+$clr-gray-900: #18181b !default;
+$clr-gray-925: #121214 !default;
+$clr-gray-950: #0c0c0e !default;
+$clr-gray-975: #060607 !default;
+//@debug color.mix(black, $clr-gray-900, 75%);
+
+$clr-darker-text: $clr-gray-925 !default;
+$clr-dark-text: $clr-gray-800 !default;
+$clr-light-text: $clr-gray-100 !default;
+$clr-lighter-bg: $clr-gray-100 !default;
+$clr-light-bg: $clr-gray-900 !default;
+$clr-dark-bg: $clr-gray-900 !default;
+
+$clr-top-bottom-bg: rgba(black,0.98);
+$menu-background-color: rgba(#222222, 0.98);
+
+$focus-color: #547B2F;
+$focus-ring-color: lighten($focus-color, 20%);
+$focus-ring-offset-color: lighten($focus-color, 10%);
+
+
+$base-font-size: 1rem !default;
+
+$fonts: (
+    sans: (
+        //"'Josefin SansVariable'",
+        "'Exo'",
+            //"'Brygada 1918'",
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "'Segoe UI'",
+        Roboto,
+        "'Helvetica Neue'",
+        Arial,
+        "'Noto Sans'",
+        sans-serif,
+        "'Apple Color Emoji'",
+        "'Segoe UI Emoji'",
+        "'Segoe UI Symbol'",
+        "'Noto Color Emoji'",
+    ),
+    serif: (
+        //"'Josefin SlabVariable'",
+        "'Brygada 1918'",
+        ui-serif,
+        Georgia,
+        Cambria,
+        "'Times New Roman'",
+        Times,
+        serif
+    ),
+    mono: (
+        "'Roboto Mono'",
+        ui-monospace,
+        SFMono-Regular,
+        Menlo,
+        Monaco,
+        Consolas,
+        "'Liberation Mono'",
+        "'Courier New'",
+        monospace,
+    ),
+) !default;
+
+
+$menu-breakpoint: lg !default;
+
+$spacer: 0.5rem !default;
+$container-min-width: 20rem !default;

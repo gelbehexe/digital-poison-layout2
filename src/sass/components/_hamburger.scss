@@ -1,0 +1,85 @@
+@use "../abstracts/mixins" as hbMixins;
+.hamburger {
+    display: none;
+    //@media (min-width: 1px) {
+    // only small screens
+    @include hbMixins.media-nav-max {
+        display: block;
+        --touch-click-active-scale: 1.2;
+        --size: var(--ham-icon-size-outer);
+        --line-height: 3px;
+        --line-space: 8px;
+        --icon-padding: 0.1rem;
+        --real-icon-size: calc(var(--line-height) * 3 + var(--line-space) * 2);
+        --real-line-space: calc(var(--line-height) +  var(--line-space));
+        height: var(--size);
+        width: var(--size);
+        margin: 0;
+        border: 0;
+        background-color: transparent;
+        color: inherit;
+        cursor: pointer;
+        position: relative;
+
+
+        &__icon {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            //gap: var(--line-space);
+            position: absolute;
+            left: var(--ham-padding);
+            right: var(--ham-padding);
+            top: var(--ham-padding);
+            bottom: var(--ham-padding);
+            transform-origin: center;
+
+            &__line + &__line {
+                // safari on ios does not know gap for flex
+                margin-top: var(--line-space);
+            }
+            &__line {
+                display: block;
+                background-color: currentColor;
+                height: var(--line-height);
+                width: 100%;
+                border-radius: 100px;
+                //transform-origin: center;
+
+                @include hbMixins.media-reduceMotionNoPreference {
+                    transition: transform var(--transition-duration) ease-in-out;
+                }
+
+            }
+
+        }
+
+        &--open {
+            .hamburger__icon {
+                --translate-y-top: calc(var(--line-height) + var(--line-space));
+                --translate-y-bottom: calc(var(--translate-y-top) * -1);
+                &__line {
+
+                    &--top {
+                        transform: translateY(var(--translate-y-top)) rotate(-45deg);
+                    }
+
+                    &--middle {
+                        transform: scaleX(0);
+                    }
+
+                    &--bottom {
+                        transform: translateY(var(--translate-y-bottom)) rotate(45deg);
+                    }
+                }
+            }
+        }
+
+    }
+
+    @include hbMixins.media-breakpoint-max(xs) {
+        --ham-icon-size: 2.0rem;
+        --line-space: 6px;
+    }
+
+}

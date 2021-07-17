@@ -1,0 +1,6 @@
+.button__icon {
+    --size: var(--button-icon-size);
+    width: var(--size);
+    height: var(--size);
+    color: currentColor;
+}

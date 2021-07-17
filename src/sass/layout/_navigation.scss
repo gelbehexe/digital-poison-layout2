@@ -1,0 +1,204 @@
+@use "../abstracts/mixins" as navMixins;
+
+@mixin nav-item-horizontal {
+    .nav__sep {
+        background-color: currentColor;
+        height: 1px;
+        margin: 0.25rem 0;
+    }
+    & + & {
+        margin-top: 1px;
+    }
+}
+
+@mixin nav-link-horizontal {
+    &:hover, &.active, &.touch-click-active {
+        background-color: rgba(255,255,255,0.2);
+    }
+
+    .nav {
+        &__link {
+            &__title {
+                flex-grow: 1;
+            }
+
+            &__toggler {
+                flex-shrink: 0;
+            }
+
+        }
+    }
+
+}
+
+// common nav styles
+.nav {
+    &__list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    &__link {
+        padding: var(--nav-link-padding);
+        display: flex;
+        align-items: center;
+
+        &__title {
+            display: block;
+        }
+
+        &__toggler {
+            display: block;
+            margin-left: 0.5rem;
+        }
+    }
+}
+
+
+.main-nav {
+    // only for small screens
+    @include navMixins.media-nav-max {
+        background-color: var(--clr-menu-bg);
+        max-height: calc(var(--ham-menu-max-height) - var(--spacer));
+        overflow-y: auto;
+        position: absolute;
+        right: 0;
+        top: var(--ham-icon-size-outer);
+
+        transform-origin: top;
+        transform: scaleY(0);
+        //opacity: 0;
+
+        //--transition-duration: 2s;
+        --transition-delay: calc(var(--transition-duration) / 2);
+
+        &:not(&--open) {
+            transition:
+                transform var(--transition-duration) ease-in-out var(--transition-delay);
+                //opacity var(--transition-duration) ease-in-out;
+
+            .main-nav {
+                &__quicksearch, &__list {
+                    opacity: 0;
+                    transition: opacity var(--transition-duration) ease-in-out;
+                }
+            }
+
+        }
+
+        &--open {
+            transform: scaleY(1);
+            transition:
+                transform var(--transition-duration) ease-in-out;
+            //opacity: 1;
+            //transition:
+            //    transform var(--transition-duration) ease-in-out,
+            //    opacity var(--transition-duration) ease-in-out;
+
+            .main-nav {
+                &__quicksearch, &__list {
+                    opacity: 1;
+                    transition: opacity var(--transition-duration) ease-in-out var(--transition-delay);
+                }
+
+            }
+        }
+
+        &__quicksearch {
+            background-color: var(--clr-menu-bg);
+            padding: 0.5rem var(--nav-link-padding);
+            position: sticky;
+            top: 0;
+        }
+
+        &__list {
+        }
+
+
+        &__item {
+            @include nav-item-horizontal;
+        }
+
+        &__link {
+            @include nav-link-horizontal;
+            width: var(--small-screen-inner-width);
+        }
+
+
+    }
+}
+
+.sub-nav {
+
+    &__item {
+        @include nav-item-horizontal;
+    }
+
+    &__link {
+        @include nav-link-horizontal;
+    }
+
+    // only for small screens
+    @include navMixins.media-nav-max {
+        font-size: 0.95rem;
+
+        &__list {
+            margin-top: 1px;
+        }
+
+        &__link {
+            width: var(--small-screen-inner-width);
+            padding-left: calc(var(--nav-link-padding) + var(--spacer));
+        }
+
+        --transition-duration: 120ms;
+
+        @include navMixins.media-reduceMotionNoPreference {
+            transition:
+                font-size var(--transition-duration) ease-in-out,
+                line-height var(--transition-duration) ease-in-out,
+                padding var(--transition-duration) ease-in-out;
+
+                &__list, &__item, &__link {
+                    transition:
+                        padding var(--transition-duration) ease-in-out,
+                        margin var(--transition-duration) ease-in-out;
+                }
+
+            &__item > .nav__sep {
+                transition: height var(--transition-duration) ease-in-out;
+            }
+
+        }
+
+        &:not(&--open) {
+            font-size: 0;
+            line-height: 0;
+
+            .sub-nav {
+                &__list, &__item, &__link {
+                    margin: 0;
+                    padding: 0;
+                }
+
+                &__item > .nav__sep {
+                    height: 0;
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+        }
+
+    }
+
+
+
+    // only for large screens
+    @include navMixins.media-nav {
+        &__list {
+            //margin-top: 0.5rem;
+        }
+
+    }
+}

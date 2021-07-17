@@ -1,0 +1,141 @@
+@use "../../abstracts/mixins" as qsFormMixin;
+
+.quick-search {
+    --button-width: calc(var(--button-icon-size) + (var(--default-control-padding) * 2));
+    --field-padding-right: calc(var(--button-width) +  var(--default-control-padding));
+
+    position: relative;
+
+    &__wrapper {
+
+    }
+
+    &__field {
+        display: block;
+        padding-right: var(--field-padding-right);
+        border-radius: var(--border-radius);
+    }
+
+    &__button {
+        display: block;
+        border-top-right-radius: var(--border-radius);
+        border-bottom-right-radius: var(--border-radius);
+        background-color: var(--clr-primary);
+        border-color: transparent;
+        color: var(--clr-light-text);
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    // only for small screens
+    //@media (min-width: 1px) {
+    @include qsFormMixin.media-nav-max {
+
+        &__wrapper {
+
+        }
+
+        &__field {
+            width: 100%;
+        }
+
+        &__button {
+
+        }
+    }
+
+    // only for large screens
+    @include qsFormMixin.media-nav {
+        --field-width: 12rem;
+        --total-width: calc(var(--button-width) +  var(--field-width));
+        --total-field-width: calc(var(--field-width) + var(--button-width));
+        --circle-radius: calc((var(--button-width) / 2) - 0.2rem);
+        --circle-clip-x: calc(var(--button-width) / 2);
+        --circle-clip-y: calc(var(--button-width) / 2);
+        --border-radius-rounded: calc(var(--button-width) / 2);
+
+        width: var(--button-width);
+        height: var(--button-width);
+        overflow: visible;
+        //--transition-duration: 3s;
+        --transition-delay: calc(var(--transition-duration) * 0.8);
+
+
+        &__field {
+            width: var(--total-width);
+
+        }
+
+
+        &__wrapper {
+            position: absolute;
+            left: 0;
+            background-color: var(--clr-primary);
+            overflow: hidden;
+            &:not(:focus-within) {
+                border-radius: var(--border-radius-rounded);
+                top: 0;
+                width: var(--button-width);
+                overflow: hidden;
+                transition:
+                    width var(--transition-duration) ease-in-out var(--transition-delay),
+                    border-radius var(--transition-duration) ease-in-out var(--transition-delay),
+                    top var(--transition-duration) ease-in-out var(--transition-delay);
+
+                .quick-search {
+                    &__field {
+                        opacity: 0;
+                        margin-left: calc(var(--total-width) * -1 + var(--button-width) + 1px);
+                        cursor: pointer;
+                        transition:
+                            opacity var(--transition-duration) ease-in-out,
+                            margin-left var(--transition-duration) ease-in-out var(--transition-delay);
+                    }
+
+                    &__button {
+                        left: 0;
+                        pointer-events: none;
+                        border-radius: var(--border-radius-rounded);
+                        transition:
+                            left var(--transition-duration) ease-in-out var(--transition-delay),
+                            border-radius var(--transition-duration) ease-in-out var(--transition-delay);
+                    }
+                }
+
+            }
+            &:focus-within {
+                border-radius: var(--border-radius);
+                top: var(--button-width);
+                width: var(--total-width);
+                transition:
+                    width var(--transition-duration) ease-in-out,
+                    border-radius var(--transition-duration) ease-in-out,
+                    top var(--transition-duration) ease-in-out;
+
+                .quick-search {
+                    &__field {
+                        cursor: auto;
+                        opacity: 1;
+                        margin-left: 0;
+                        transition:
+                            opacity var(--transition-duration) ease-in-out var(--transition-delay);
+                    }
+
+                    &__button {
+                        pointer-events: auto;
+                        border-radius: 0 var(--border-radius) var(--border-radius) 0;
+                        left: calc(var(--field-width) - 2px);
+                        transition:
+                            left var(--transition-duration) ease-in-out,
+                            border-radius var(--transition-duration) ease-in-out;
+
+                    }
+                }
+
+            }
+
+        }
+
+    }
+}

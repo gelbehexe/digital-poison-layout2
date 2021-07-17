@@ -1,0 +1,28 @@
+@use "sass:map";
+@use "sass:color";
+@use "variables" as fnVars;
+
+@function getBreakpoint($screen) {
+    @if (not map.has-key(fnVars.$breakpoints, $screen)) {
+        @error "Screen '#{$screen}' does not exist."
+    }
+
+    @return map.get(fnVars.$breakpoints, $screen);
+}
+
+@function getRgba($color,$opacity) {
+    $r: color.red($color);
+    $g: color.green($color);
+    $b: color.blue($color);
+    @return "rgba(#{$r},#{$g},#{$b},#{$opacity})";
+}
+
+@function getFontFamily($name: sans) {
+    @if (map.has-key(fnVars.$fonts,$name)) {
+        @return map.get(fnVars.$fonts, $name);
+    }
+
+    @warn ("Font #{$name} does not exist.");
+
+    @return map.get(fnVars.$fonts, sans);
+}
